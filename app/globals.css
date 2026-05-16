@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ff-orange:  #FF6B00;
+  --ff-amber:   #FFB300;
+  --ff-red:     #FF2D55;
+  --ff-dark:    #0A0A0F;
+  --ff-darker:  #050508;
+  --ff-card:    #111118;
+  --ff-border:  #1E1E2E;
+  --ff-text:    #E0E0F0;
+  --ff-subtext: #8888AA;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--ff-darker);
+  color: var(--ff-text);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--ff-darker); }
+::-webkit-scrollbar-thumb  { background: var(--ff-orange); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ff-amber); }
+
+/* Selection */
+::selection {
+  background: rgba(255, 107, 0, 0.3);
+  color: #fff;
+}
+
+/* ─── Glassmorphism card ─────────────────────────────────── */
+.glass-card {
+  background: rgba(17, 17, 24, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 107, 0, 0.1);
+}
+
+.glass-card-hover {
+  transition: all 0.3s ease;
+}
+.glass-card-hover:hover {
+  border-color: rgba(255, 107, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 30px rgba(255,107,0,0.2), inset 0 1px 0 rgba(255,107,0,0.2);
+  transform: translateY(-2px);
+}
+
+/* ─── Glow button ────────────────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s ease;
+}
+.btn-glow:hover::before { left: 100%; }
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(255,107,0,0.6), 0 0 60px rgba(255,107,0,0.3);
+  transform: translateY(-1px);
+}
+.btn-glow:active { transform: translateY(0); }
+
+/* ─── Shimmer skeleton ───────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,107,0,0.08) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── Scan line effect ───────────────────────────────────── */
+.scan-effect {
+  position: relative;
+  overflow: hidden;
+}
+.scan-effect::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,107,0,0.6), transparent);
+  animation: scanLine 2s linear infinite;
+  pointer-events: none;
+}
+
+/* ─── Orange gradient text ───────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--ff-orange), var(--ff-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-hot {
+  background: linear-gradient(135deg, var(--ff-red), var(--ff-orange), var(--ff-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Input focus ring ───────────────────────────────────── */
+.ff-input {
+  background: rgba(10, 10, 15, 0.8);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  color: var(--ff-text);
+  font-family: 'Orbitron', monospace;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+.ff-input:focus {
+  outline: none;
+  border-color: var(--ff-orange);
+  box-shadow: 0 0 0 2px rgba(255,107,0,0.15), 0 0 20px rgba(255,107,0,0.2);
+}
+.ff-input::placeholder {
+  color: var(--ff-subtext);
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Corner decorations ─────────────────────────────────── */
+.corner-tl, .corner-tr, .corner-bl, .corner-br {
+  position: absolute;
+  width: 14px; height: 14px;
+}
+.corner-tl { top: -1px;  left: -1px;  border-top: 2px solid var(--ff-orange); border-left: 2px solid var(--ff-orange); }
+.corner-tr { top: -1px;  right: -1px; border-top: 2px solid var(--ff-orange); border-right: 2px solid var(--ff-orange); }
+.corner-bl { bottom: -1px; left: -1px;  border-bottom: 2px solid var(--ff-orange); border-left: 2px solid var(--ff-orange); }
+.corner-br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--ff-orange); border-right: 2px solid var(--ff-orange); }
+
+/* ─── Avatar ring ────────────────────────────────────────── */
+.avatar-ring {
+  background: conic-gradient(var(--ff-orange), var(--ff-amber), var(--ff-red), var(--ff-orange));
+  animation: spin 4s linear infinite;
+}
+
+/* ─── Hexagon clip ───────────────────────────────────────── */
+.hex-clip {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* ─── Particle dots ──────────────────────────────────────── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float var(--duration, 6s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ─── Region badge ───────────────────────────────────────── */
+.region-badge {
+  background: linear-gradient(135deg, rgba(255,107,0,0.2), rgba(255,179,0,0.1));
+  border: 1px solid rgba(255,107,0,0.3);
+  font-family: 'Orbitron', monospace;
+}
+
+/* ─── Toast animations ───────────────────────────────────── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%) scale(0.9); }
+  to   { opacity: 1; transform: translateX(0)   scale(1); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0)   scale(1); }
+  to   { opacity: 0; transform: translateX(100%) scale(0.9); }
+}
+.toast-enter { animation: toastIn  0.35s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.toast-exit  { animation: toastOut 0.3s  ease-in forwards; }
+
+/* ─── Divider line ───────────────────────────────────────── */
+.ff-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,107,0,0.4), transparent);
+}
+
+/* ─── Noise texture overlay ──────────────────────────────── */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ─── Grid pattern background ────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,107,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,107,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
